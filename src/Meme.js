@@ -10,7 +10,7 @@ const Meme = ({ topText, bottomText, imageRef, setCanvasRef }) => {
     setMemeImage(ctx, imageRef);
     setMemeText(ctx, imageRef, topText, false);
     setMemeText(ctx, imageRef, bottomText, true);
-  }, [canvasRef, imageRef && imageRef.current]);
+  }, [canvasRef, imageRef && imageRef.current, topText, bottomText]);
 
   useEffect(() => {
     draw();
