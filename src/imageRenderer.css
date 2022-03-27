@@ -1,0 +1,15 @@
+.image-container {
+  overflow: hidden;
+  position: relative;
+  margin: 20px auto;
+}
+
+.image {
+  width: 100%;
+  opacity: 0;
+}
+
+.image.isLoaded {
+  transition: opacity 0.5s ease-out;
+  opacity: 1;
+}

@@ -1,18 +1,23 @@
 .App {
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 300px 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: column;
   grid-template-areas:
     "picker canvas"
     "gallery gallery";
 }
 
-.picker {
+.pickerContainer {
   grid-area: picker;
 }
 
-.canvas {
+.canvasContainer {
   grid-area: canvas;
+  height: 300px;
 }
 
-.gallery {
+.galleryContainer {
   grid-area: gallery;
 }

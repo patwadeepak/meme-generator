@@ -1,15 +1,21 @@
 import React from "react";
 import memes from "./memeFileNames.json";
-import styles from "./Gallery.css";
+import ImageRenderer from "./ImageRenderer";
 
-const Gallery = ({ items = memes }) => {
+const Gallery = ({ style, setImageRef }) => {
   return (
-    <div className={styles.grid}>
-      {/* {items.map((item, index) => {
-        import(`./memes/${item}`).then((image) => (
-          <img key={index} src={image} alt={item} />
-        ));
-      })} */}
+    <div style={{ display: "flex", flexWrap: "wrap" }} className={style}>
+      {memes.map((fileName, index) => (
+        <ImageRenderer
+          key={index}
+          url={
+            "https://raw.githubusercontent.com/patwadeepak/meme-generator/main/docs/static/memes/" +
+            fileName
+          }
+          alt={fileName}
+          setImageRef={setImageRef}
+        />
+      ))}
     </div>
   );
 };
