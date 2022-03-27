@@ -5,11 +5,11 @@ import styles from "./Gallery.css";
 const Gallery = ({ items = memes }) => {
   return (
     <div className={styles.grid}>
-      {items.map((item, index) => {
+      {/* {items.map((item, index) => {
         import(`./memes/${item}`).then((image) => (
           <img key={index} src={image} alt={item} />
         ));
-      })}
+      })} */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { setMemeImage } from "./drawAndDownload";
 import ReImg from "./reimg";
-import memeImage from "./memes/all_the_things_sad.jpg";
+// import memeImage from "./memes/all_the_things_sad.jpg";
 
 const Meme = ({ topText, bottomText, image }) => {
   const canvasRef = useRef();
@@ -9,7 +9,7 @@ const Meme = ({ topText, bottomText, image }) => {
   const draw = useCallback(() => {
     const canvas = canvasRef && canvasRef.current;
     const ctx = canvas.getContext("2d");
-    setMemeImage(ctx, memeImage, sampleRef.current);
+    // setMemeImage(ctx, memeImage, sampleRef.current);
   }, [canvasRef]);
 
   useEffect(() => {
