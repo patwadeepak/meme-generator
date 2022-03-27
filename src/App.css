@@ -1,0 +1,18 @@
+.App {
+  display: grid;
+  grid-template-areas:
+    "picker canvas"
+    "gallery gallery";
+}
+
+.picker {
+  grid-area: picker;
+}
+
+.canvas {
+  grid-area: canvas;
+}
+
+.gallery {
+  grid-area: gallery;
+}
