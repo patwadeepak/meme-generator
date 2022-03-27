@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchImage = () => {
     fetch(
-      "https://github.com/patwadeepak/meme-generator/blob/main/src/memes/10guy.jpg"
+      "https://github.com/patwadeepak/meme-generator/blob/main/docs/static/memes/10guy.jpg"
     ).then((image1) => setImage1({ value: image1 }));
   };
 
