@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { throttle } from "lodash";
 import Picker from "./Picker";
 import Meme from "./Meme";
@@ -26,9 +26,9 @@ const App = () => {
       className="App"
       style={{
         gridTemplateRows:
-          imageRef && imageRef.current
+          imageRef && imageRef.current && imageRef.current.height > 300
             ? `${imageRef.current.height}px 1fr`
-            : "auto 1fr",
+            : "300px 1fr",
       }}
     >
       <div className="pickerContainer">
@@ -41,6 +41,9 @@ const App = () => {
           canvasRef={canvasRef}
           imageRef={imageRef}
         />
+        <div>
+          <Search searchText={searchText} setSearchText={handleSearchText} />
+        </div>
       </div>
       <div className="canvasContainer">
         <Meme
@@ -51,11 +54,8 @@ const App = () => {
         />
       </div>
       <div className="galleryContainer">
-        <div>
-          <Search searchText={searchText} setSearchText={handleSearchText} />
-        </div>
         <Gallery
-          style="gallery"
+          className="gallery"
           setImageRef={handleSetImageRef}
           searchText={searchText}
         />

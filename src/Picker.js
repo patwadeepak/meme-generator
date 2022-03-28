@@ -12,7 +12,7 @@ const Picker = ({
 }) => {
   return (
     <div className={styles.pickerContainer}>
-      <h3>Meme Generator</h3>
+      <h3>Memer</h3>
       <label htmlFor="topText">Top</label>
       <br />
       <input

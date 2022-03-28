@@ -15,11 +15,11 @@ const Meme = ({ topText, bottomText, imageRef, setCanvasRef }) => {
     setCtx(ctx);
     setBackgroundColor(ctx, "#FFFFFF");
     setMemeImage(ctx, imageRef);
-  }, [canvasRef, imageRef && imageRef.current]);
+  }, [canvasRef, imageRef]);
 
   useEffect(() => {
     draw();
-  }, [draw, imageRef && imageRef.current]);
+  }, [draw, imageRef]);
 
   useEffect(() => {
     if (ctx) {
@@ -30,10 +30,14 @@ const Meme = ({ topText, bottomText, imageRef, setCanvasRef }) => {
   return (
     <canvas
       ref={canvasRef}
-      width={(imageRef && imageRef.current.width) || 300}
-      height={(imageRef && imageRef.current.height) || 300}
+      width={(imageRef && imageRef.current && imageRef.current.width) || 300}
+      height={(imageRef && imageRef.current && imageRef.current.height) || 300}
       id="canvas"
-      style={imageRef && imageRef.current.width && { padding: "30px" }}
+      style={
+        imageRef &&
+        imageRef.current &&
+        imageRef.current.width && { padding: "30px" }
+      }
     ></canvas>
   );
 };
