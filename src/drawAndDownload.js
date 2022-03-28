@@ -8,9 +8,11 @@ export const setBackgroundColor = (ctx, color) => {
 
 // set border color
 export const setBorderColor = (ctx, color) => {
+  ctx.save();
   ctx.strokeStyle = color;
   ctx.rect(0, 0, ctx.width, ctx.height);
   ctx.stroke();
+  ctx.restore();
 };
 
 // set Meme Image
@@ -21,14 +23,13 @@ export const setMemeImage = (ctx, imageRef) => {
         imageRef.current,
         0,
         0,
-        imageRef.current.width,
-        imageRef.current.height,
+        imageRef.current.naturalWidth,
+        imageRef.current.naturalHeight,
         0,
         0,
         imageRef.current.width,
         imageRef.current.height
       );
-      ctx.save();
     }
   } catch (e) {
     console.error("There was error in selecting meme.", e);
@@ -36,27 +37,18 @@ export const setMemeImage = (ctx, imageRef) => {
 };
 
 // draw Meme Text
-export const setMemeText = (ctx, imageRef, text, positionBottom) => {
+export const setMemeText = (ctx, imageRef, topText, bottomText) => {
   try {
     if (imageRef && imageRef.current) {
-      ctx.drawImage(
-        imageRef.current,
-        0,
-        0,
-        imageRef.current.width,
-        imageRef.current.height,
-        0,
-        0,
-        imageRef.current.width,
-        imageRef.current.height
-      );
+      setMemeImage(ctx, imageRef);
       ctx.font = "bold 40px Arial";
       ctx.textAlign = "center";
       ctx.fillStyle = "black";
+      ctx.fillText(topText, imageRef.current.width / 2, 50);
       ctx.fillText(
-        text,
+        bottomText,
         imageRef.current.width / 2,
-        positionBottom ? imageRef.current.height - 50 : 50
+        imageRef.current.height - 25
       );
     }
   } catch (e) {

@@ -23,15 +23,9 @@ const Meme = ({ topText, bottomText, imageRef, setCanvasRef }) => {
 
   useEffect(() => {
     if (ctx) {
-      setMemeText(ctx, imageRef, topText, false);
+      setMemeText(ctx, imageRef, topText, bottomText);
     }
-  }, [topText]);
-
-  useEffect(() => {
-    if (ctx) {
-      setMemeText(ctx, imageRef, bottomText, true);
-    }
-  }, [bottomText]);
+  }, [topText, bottomText]);
 
   return (
     <canvas
@@ -39,6 +33,7 @@ const Meme = ({ topText, bottomText, imageRef, setCanvasRef }) => {
       width={(imageRef && imageRef.current.width) || 300}
       height={(imageRef && imageRef.current.height) || 300}
       id="canvas"
+      style={imageRef && imageRef.current.width && { padding: "30px" }}
     ></canvas>
   );
 };

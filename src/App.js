@@ -22,7 +22,15 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        gridTemplateRows:
+          imageRef && imageRef.current
+            ? `${imageRef.current.height}px 1fr`
+            : "auto 1fr",
+      }}
+    >
       <div className="pickerContainer">
         <Picker
           className="pickerContainer"

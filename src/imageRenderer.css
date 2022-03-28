@@ -13,3 +13,8 @@
   transition: opacity 0.5s ease-out;
   opacity: 1;
 }
+
+.image:hover {
+  border: 3px solid green;
+  cursor: pointer;
+}
