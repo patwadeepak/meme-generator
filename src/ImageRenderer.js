@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { useIntersection } from "./intersectionObserver";
 import "./imageRenderer.css";
 
-const ImageRenderer = ({ url, width, setImageRef }) => {
+const ImageRenderer = ({ url, width, setImageRef, imageLabel }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const imgRef = useRef();
@@ -11,10 +11,6 @@ const ImageRenderer = ({ url, width, setImageRef }) => {
   useIntersection(imgRef, () => {
     setIsInView(true);
   });
-
-  const handleOnLoad = () => {
-    setIsLoaded(true);
-  };
 
   return (
     <div
@@ -28,10 +24,12 @@ const ImageRenderer = ({ url, width, setImageRef }) => {
           ref={imageRef}
           className={classnames("image", !!isLoaded ? "isLoaded" : "")}
           src={url}
-          onLoad={handleOnLoad}
-          width={width}
+          onLoad={() => setIsLoaded(true)}
+          width={width || 300}
+          crossOrigin="anonymous"
         />
       )}
+      <div style={{ textAlign: "center" }}>{imageLabel}</div>
     </div>
   );
 };

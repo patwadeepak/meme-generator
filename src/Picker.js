@@ -1,6 +1,7 @@
 import React from "react";
 import ReImg from "./reimg";
 import styles from "./Picker.module.css";
+import { throttle } from "lodash";
 
 const Picker = ({
   topText,
@@ -19,7 +20,7 @@ const Picker = ({
         id="topText"
         placeholder="Enter top text here"
         value={topText}
-        onChange={(e) => setTopText(e.target.value)}
+        onChange={(e) => throttle(setTopText(e.target.value), 300)}
       />
       <br />
       <br />
@@ -31,16 +32,16 @@ const Picker = ({
         id="bottomText"
         placeholder="Enter bottom text here"
         value={bottomText}
-        onChange={(e) => setBottomText(e.target.value)}
+        onChange={(e) => throttle(setBottomText(e.target.value), 300)}
       />
       <br />
       <br />
       <button
-        onClick={() =>
+        onClick={() => {
           canvasRef &&
-          canvasRef.current &&
-          ReImg.fromCanvas(canvasRef.current).downloadPng()
-        }
+            canvasRef.current &&
+            ReImg.fromCanvas(canvasRef.current).downloadPng();
+        }}
         style={{ padding: "5px" }}
       >
         Download Meme

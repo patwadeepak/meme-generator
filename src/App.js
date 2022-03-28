@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { throttle } from "lodash";
 import Picker from "./Picker";
 import Meme from "./Meme";
 import Gallery from "./Gallery";
+import Search from "./Search";
 import "./App.css";
 
 const App = () => {
@@ -9,9 +11,14 @@ const App = () => {
   const [bottomText, setBottomText] = useState("");
   const [imageRef, setImageRef] = useState(null);
   const [canvasRef, setCanvasRef] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   const handleSetImageRef = (ref) => {
     setImageRef(ref);
+  };
+
+  const handleSearchText = (e) => {
+    throttle(setSearchText(e.target.value), 300);
   };
 
   return (
@@ -24,6 +31,7 @@ const App = () => {
           bottomText={bottomText}
           setBottomText={setBottomText}
           canvasRef={canvasRef}
+          imageRef={imageRef}
         />
       </div>
       <div className="canvasContainer">
@@ -35,7 +43,14 @@ const App = () => {
         />
       </div>
       <div className="galleryContainer">
-        <Gallery style="gallery" setImageRef={handleSetImageRef} />
+        <div>
+          <Search searchText={searchText} setSearchText={handleSearchText} />
+        </div>
+        <Gallery
+          style="gallery"
+          setImageRef={handleSetImageRef}
+          searchText={searchText}
+        />
       </div>
     </div>
   );

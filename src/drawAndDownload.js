@@ -15,23 +15,51 @@ export const setBorderColor = (ctx, color) => {
 
 // set Meme Image
 export const setMemeImage = (ctx, imageRef) => {
-  if (imageRef && imageRef.current) {
-    imageRef.current.crossOrigin = "anonymous";
-    ctx.drawImage(imageRef.current, 0, 0);
-    ctx.save();
+  try {
+    if (imageRef && imageRef.current) {
+      ctx.drawImage(
+        imageRef.current,
+        0,
+        0,
+        imageRef.current.width,
+        imageRef.current.height,
+        0,
+        0,
+        imageRef.current.width,
+        imageRef.current.height
+      );
+      ctx.save();
+    }
+  } catch (e) {
+    console.error("There was error in selecting meme.", e);
   }
 };
 
 // draw Meme Text
 export const setMemeText = (ctx, imageRef, text, positionBottom) => {
-  if (imageRef && imageRef.current) {
-    ctx.font = "bold 40px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText(
-      text,
-      imageRef.current.width / 2,
-      positionBottom ? imageRef.current.height - 50 : 50
-    );
-    ctx.save();
+  try {
+    if (imageRef && imageRef.current) {
+      ctx.drawImage(
+        imageRef.current,
+        0,
+        0,
+        imageRef.current.width,
+        imageRef.current.height,
+        0,
+        0,
+        imageRef.current.width,
+        imageRef.current.height
+      );
+      ctx.font = "bold 40px Arial";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "black";
+      ctx.fillText(
+        text,
+        imageRef.current.width / 2,
+        positionBottom ? imageRef.current.height - 50 : 50
+      );
+    }
+  } catch (e) {
+    console.error("There was error in selecting meme.", e);
   }
 };
