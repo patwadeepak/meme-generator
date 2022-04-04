@@ -41,15 +41,20 @@ export const setMemeText = (ctx, imageRef, topText, bottomText) => {
   try {
     if (imageRef && imageRef.current) {
       setMemeImage(ctx, imageRef);
+      ctx.save();
       ctx.font = "bold 40px Arial";
       ctx.textAlign = "center";
       ctx.fillStyle = "black";
+      ctx.shadowColor = "#FFFFFF";
+      ctx.shadowBlur = 3;
+
       ctx.fillText(topText, imageRef.current.width / 2, 50);
       ctx.fillText(
         bottomText,
         imageRef.current.width / 2,
         imageRef.current.height - 25
       );
+      ctx.restore();
     }
   } catch (e) {
     console.error("There was error in selecting meme.", e);
